@@ -88,7 +88,10 @@ void competition_initialize() {}
  */
 
 void autonomous() {
-  close_WP();
+  //nothing();
+  //far_2_ball_WP();
+  far_4_ball();
+  //close_WP();
 }
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -108,6 +111,7 @@ void opcontrol() {
   setDriveLights(0x0fdb35); //green
   bool last30 = false;
   std::uint32_t startTime = pros::millis();
+  liftRot.reset_position(); 
   while (true) {
     std::uint32_t time = pros::millis();
 

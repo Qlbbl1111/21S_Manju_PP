@@ -23,11 +23,12 @@ extern pros::Controller controller;
 
 // SENSORS
 extern pros::Imu inertial;
-extern pros::ADIDigitalIn liftLimit;
+extern pros::Rotation liftRot;
 
 // PNUEMATICS
 extern pros::ADIDigitalOut wings;
 extern pros::ADIDigitalOut liftLock;
+extern pros::ADIDigitalOut PTO;
 
 // LIGHTS
 extern sylib::Addrled leftDriveLights;
@@ -37,3 +38,4 @@ extern sylib::Addrled rightWingLights;
 
 // GLOBALS
 bool shift();
+bool PTOon();

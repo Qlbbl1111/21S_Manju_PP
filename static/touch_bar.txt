@@ -1,54 +1,57 @@
-45, -6, 39.813
-43.068, -6.518, 32.82
-41.169, -7.142, 23.86
-39.331, -7.928, 20
-37.618, -8.954, 20
-36.139, -10.294, 20
-35.012, -11.939, 20
-34.261, -13.789, 20
-33.816, -15.737, 20
-33.59, -17.724, 35.067
-33.508, -19.722, 68.689
-33.517, -21.722, 100
-33.594, -23.72, 100
-33.713, -25.716, 100
-33.867, -27.71, 100
-34.043, -29.703, 100
-34.235, -31.693, 100
-34.436, -33.683, 100
-34.645, -35.672, 100
-34.858, -37.661, 100
-35.072, -39.649, 100
-35.288, -41.638, 100
-35.502, -43.626, 100
-35.715, -45.615, 100
-35.925, -47.604, 98.548
-36.132, -49.593, 95.936
-36.335, -51.583, 93.251
-36.534, -53.573, 90.486
-36.73, -55.563, 87.634
-35.478, -56.336, 85.476
-33.483, -56.48, 82.451
-31.488, -56.625, 79.311
-29.494, -56.77, 76.041
-27.499, -56.915, 72.624
-25.504, -57.06, 69.038
-23.509, -57.205, 65.255
-21.515, -57.35, 61.239
-19.52, -57.494, 56.94
-17.525, -57.639, 52.289
-15.531, -57.784, 47.182
-13.536, -57.929, 41.451
-11.541, -58.074, 34.788
-9.546, -58.219, 26.499
-7.552, -58.364, 13.935
+45, -6, 62.89
+43.182, -6.833, 58.713
+41.371, -7.681, 54.214
+39.571, -8.553, 49.307
+37.788, -9.46, 43.854
+36.041, -10.433, 37.62
+34.352, -11.503, 30.124
+32.785, -12.743, 20
+31.497, -14.262, 20
+30.783, -16.114, 20
+30.774, -18.105, 20
+31.22, -20.052, 20
+31.89, -21.936, 48.28
+32.667, -23.779, 91.65
+33.491, -25.601, 97.8
+34.335, -27.414, 95.168
+35.184, -29.225, 92.46
+36.027, -31.038, 89.671
+36.86, -32.857, 86.792
+37.677, -34.682, 83.815
+38.478, -36.515, 80.728
+39.26, -38.355, 77.517
+40.023, -40.204, 74.168
+40.767, -42.061, 70.661
+41.491, -43.925, 66.97
+42.198, -45.796, 63.063
+42.566, -47.741, 58.942
+42.465, -49.736, 54.467
+41.992, -51.676, 49.594
+41.084, -53.451, 44.195
+39.772, -54.952, 41.624
+38.145, -56.11, 55.108
+36.342, -56.97, 76.155
+34.443, -57.592, 83.95
+32.493, -58.033, 80.869
+30.517, -58.338, 77.665
+28.528, -58.542, 74.323
+26.532, -58.667, 70.823
+24.533, -58.73, 67.141
+22.533, -58.75, 63.245
+20.533, -58.735, 59.093
+18.533, -58.696, 54.626
+16.534, -58.643, 49.759
+14.535, -58.582, 44.362
+12.536, -58.521, 38.21
+10.537, -58.469, 30.854
+8.537, -58.431, 21.071
 6.789, -58.419, 0
 6.789, -58.419, 0
--13.158, -59.868, 0
+-13.211, -58.282, 0
 endData
 127
 100
 200
-45, -6, 29.419, -9.806, 32.939, -16.009, 36.795, -56.24
-36.795, -56.24, 21.792, -57.329, 21.792, -57.329, 6.789, -58.419
-#PATH.JERRYIO-DATA {"appVersion":"0.4.1","format":"LemLib v0.4.x (inch, byte-voltage)","gc":{"robotWidth":13,"robotHeight":17.5,"robotIsHolonomic":false,"showRobot":true,"uol":2.54,"pointDensity":2,"controlMagnetDistance":0.7750015500031,"fieldImage":{"displayName":"VRC 2024 - Over Under","signature":"VRC 2024 - Over Under","origin":{"__type":"built-in"}}},"paths":[{"segments":[{"controls":[{"uid":"Mj3hhgNwJr","x":45,"y":-6,"lock":false,"visible":true,"heading":270,"__type":"end-point"},{"uid":"h2yj0WVXoj","x":29.41907514450867,"y":-9.806358381502891,"lock":false,"visible":true,"__type":"control"},{"uid":"Mp6AJYDBPB","x":32.9393063583815,"y":-16.008670520231217,"lock":false,"visible":true,"__type":"control"},{"uid":"acgXpH99yu","x":36.79479768786127,"y":-56.23988439306358,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"uid":"3PRJVfm7yy"},{"controls":[{"uid":"acgXpH99yu","x":36.79479768786127,"y":-56.23988439306358,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"5YzmlxzWJW","x":6.789017341040463,"y":-58.41907514450867,"lock":false,"visible":true,"heading":270,"__type":"end-point"}],"speedProfiles":[],"uid":"5EL3hZqVPx"}],"pc":{"speedLimit":{"minLimit":{"value":0,"label":"0"},"maxLimit":{"value":127,"label":"127"},"step":1,"from":20,"to":100},"bentRateApplicableRange":{"minLimit":{"value":0,"label":"0"},"maxLimit":{"value":4,"label":"4"},"step":0.01,"from":1.4,"to":1.8},"maxDecelerationRate":127},"name":"Path","uid":"nvoqEx3pwZ","lock":false,"visible":true}]}
+45, -6, 22.043, -16.428, 30.928, -14.919, 42.494, -46.601
+42.494, -46.601, 44.003, -61.855, 23.133, -58.419, 6.789, -58.419
+#PATH.JERRYIO-DATA {"appVersion":"0.4.1","format":"LemLib v0.4.x (inch, byte-voltage)","gc":{"robotWidth":13,"robotHeight":17.5,"robotIsHolonomic":false,"showRobot":true,"uol":2.54,"pointDensity":2,"controlMagnetDistance":0.7750015500031,"fieldImage":{"displayName":"VRC 2024 - Over Under","signature":"VRC 2024 - Over Under","origin":{"__type":"built-in"}}},"paths":[{"segments":[{"controls":[{"uid":"Mj3hhgNwJr","x":45,"y":-6,"lock":false,"visible":true,"heading":270,"__type":"end-point"},{"uid":"h2yj0WVXoj","x":22.04335260115607,"y":-16.427745664739884,"lock":false,"visible":true,"__type":"control"},{"uid":"Mp6AJYDBPB","x":30.927745664739884,"y":-14.919075144508671,"lock":false,"visible":true,"__type":"control"},{"uid":"acgXpH99yu","x":42.494219653179194,"y":-46.60115606936416,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"uid":"3PRJVfm7yy"},{"controls":[{"uid":"acgXpH99yu","x":42.494219653179194,"y":-46.60115606936416,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"qmf9aDdtTa","x":44.00289017341041,"y":-61.85549132947977,"lock":false,"visible":true,"__type":"control"},{"uid":"ttmHOH1CqM","x":23.13294797687861,"y":-58.41907514450867,"lock":false,"visible":true,"__type":"control"},{"uid":"5YzmlxzWJW","x":6.789017341040463,"y":-58.41907514450867,"lock":false,"visible":true,"heading":270,"__type":"end-point"}],"speedProfiles":[],"uid":"5EL3hZqVPx"}],"pc":{"speedLimit":{"minLimit":{"value":0,"label":"0"},"maxLimit":{"value":127,"label":"127"},"step":1,"from":20,"to":100},"bentRateApplicableRange":{"minLimit":{"value":0,"label":"0"},"maxLimit":{"value":4,"label":"4"},"step":0.01,"from":1.4,"to":1.8},"maxDecelerationRate":127},"name":"Path","uid":"nvoqEx3pwZ","lock":false,"visible":true}]}

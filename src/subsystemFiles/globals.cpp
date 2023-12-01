@@ -21,11 +21,12 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // SENSORS
 pros::Imu inertial(21);
-pros::ADIDigitalIn liftLimit('H');
+pros::Rotation liftRot(11);
 
 // PNUEMATICS
 pros::ADIDigitalOut wings('B');
 pros::ADIDigitalOut liftLock('E');
+pros::ADIDigitalOut PTO('C');
 
 // LIGHTS
 sylib::Addrled leftDriveLights(16,7,43);
@@ -36,4 +37,25 @@ sylib::Addrled rightWingLights(16,2,20);
 //GLOABALS
 bool shift() {
   return controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+}
+
+okapi::ControllerButton PTOButton(okapi::ControllerDigital::down);
+bool latchPTO = false;
+bool togglePTO = false;
+
+bool PTOon() {
+  //FW Toggle (L2 Button)
+  if (PTOButton.isPressed()) {
+    if (!latchPTO) {
+      togglePTO = !togglePTO;
+      latchPTO = true;
+    } else {
+      latchPTO = false;
+    }
+  }
+  if (togglePTO) {
+    return true;
+  } else {
+    return false;
+  }
 }

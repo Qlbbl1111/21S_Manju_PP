@@ -3,3 +3,5 @@
 void setLift();
 
 void setLock();
+
+void setPTO();

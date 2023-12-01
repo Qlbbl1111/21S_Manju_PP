@@ -8,15 +8,29 @@ bool latchLock = false;
 void setLift() {
   liftMotor_b.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   liftMotor_a.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && !shift()) {
+  pros::lcd::print(5, "Lift: %f", liftRot.get_position());
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && shift()) {
         liftMotor_b = 127;
         liftMotor_a = 127;
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && shift()) {
+        if (PTOon()) {
+        //left_side_motors = -127;
+       // right_side_motors = -127;
+        }
+    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && !shift()) {
         liftMotor_b = -127;
         liftMotor_a = -127;
+
+        if (PTOon()) {
+        //left_side_motors = 127;
+        //right_side_motors = 127;
+        }
     } else {
         liftMotor_b = 0;
         liftMotor_a = 0;
+        if (PTOon()) {
+        //left_side_motors = 0;
+        //right_side_motors = 0;
+        }
   }
 }
 
@@ -38,3 +52,13 @@ void setLock() {
     latchLock = false; // once button is released then release the latch too
   }
 }
+
+void setPTO() {
+  if (PTOon()) {
+    PTO.set_value(true);
+  } else {
+    PTO.set_value(false);
+  }
+
+}
+

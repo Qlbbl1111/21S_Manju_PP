@@ -20,20 +20,22 @@ void set_tank(int left, int right) {
 }
 
 void driveControl(int l_stick, int r_stick) {
-    left_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    left_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    left_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    right_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    right_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    right_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    // Threshold if joysticks don't come back to perfect 0
-    if (abs(l_stick) > 5 || abs(r_stick) > 5) {
-        set_tank(curve(l_stick), curve(r_stick));
-        if (active_brake_kp != 0) reset_drive_sensor();
-    }
-    //When joys are released, run active brake (P) on drive
-    else {
-        set_tank((0 - left_front_motor.get_position()) * active_brake_kp, (0 - right_front_motor.get_position()) * active_brake_kp);
+    if (!PTOon()) {
+        left_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        left_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        left_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        right_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        right_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        right_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        // Threshold if joysticks don't come back to perfect 0
+        if (abs(l_stick) > 5 || abs(r_stick) > 5) {
+            set_tank(curve(l_stick), curve(r_stick));
+            if (active_brake_kp != 0) reset_drive_sensor();
+        }
+        //When joys are released, run active brake (P) on drive
+        else {
+            set_tank((0 - left_front_motor.get_position()) * active_brake_kp, (0 - right_front_motor.get_position()) * active_brake_kp);
+        }
     }
 }
 
