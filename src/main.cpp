@@ -1,6 +1,7 @@
 #include "main.h"
 #include "pros/rtos.hpp"
 #include "lemlib/api.hpp"
+#include "autoSelect/selection.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -29,6 +30,7 @@
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
     sylib::initialize();
+    selector::init();
 
     // the default rate is 50. however, if you need to change the rate, you
     // can do the following.
@@ -55,6 +57,7 @@
     pros::Task temps(motorTemp);
     	leftDriveLights.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
   	rightDriveLights.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+    intakeLights.set_all(0x000000);
 }
 
 /**
@@ -88,11 +91,56 @@ void competition_initialize() {}
  */
 
 void autonomous() {
-  //nothing();
-  //far_2_ball_WP();
-  far_4_ball();
-  //close_WP();
+  left_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  if (selector::auton == 1) { //run auton for Blue WP
+  close_WP();
+  }
+  if (selector::auton == 2) { //run auton for blue far 2 ball WP
+  close_disrupt();
+  }
+  if (selector::auton == 3) { //run auton for blue far 4 ball
+  far_2_ball_WP();
+  }
+  if (selector::auton == 4) { //run auton for blue disrupt
+  far_3_ball();
+  }
+  if (selector::auton == 5) { //run auton for blue nothing
+  far_5_ball();
+  }
+  if (selector::auton == 6) { //run auton for blue nothing
+  nothing();
+  }
+
+  if (selector::auton == -1) { //run auton for Blue WP
+  close_WP();
+  }
+  if (selector::auton == -2) { //run auton for blue far 2 ball WP
+  close_disrupt();
+  }
+  if (selector::auton == -3) { //run auton for blue far 4 ball
+  far_2_ball_WP();
+  }
+  if (selector::auton == -4) { //run auton for blue disrupt
+  far_3_ball();
+  }
+  if (selector::auton == -5) { //run auton for blue nothing
+  far_5_ball();
+  }
+  if (selector::auton == -6) { //run auton for blue nothing
+  nothing();
+  }
+
+  if (selector::auton == 0) { //skills
+  nothing();
+  }
 }
+
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -108,6 +156,12 @@ void autonomous() {
  */
 
 void opcontrol() {
+  left_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   setDriveLights(0x0fdb35); //green
   bool last30 = false;
   std::uint32_t startTime = pros::millis();
@@ -120,7 +174,7 @@ void opcontrol() {
     setWings();
     setIntake();
     setLift();
-    setLock();
+    setHang();
 
     if (time-startTime >= 75000 && last30 != true) {
       leftDriveLights.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);

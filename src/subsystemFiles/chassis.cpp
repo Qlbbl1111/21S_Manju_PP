@@ -3,11 +3,9 @@
 #include "lemlib/api.hpp"
 #include "pros/motors.h"
 
-float active_brake_kp = 2;
-
 int curve(int input) {
     double t = 7;
-    return (exp(-(t/10))+exp((abs(input)-100)/10)*(1- exp(-(t/10))))*input;
+    return (exp(-(t/10))+exp((abs(input)-127)/10)*(1- exp(-(t/10))))*input;
 }
 
 void reset_drive_sensor(){
@@ -19,24 +17,26 @@ void set_tank(int left, int right) {
     right_side_motors = right;
 }
 
+float active_brake_kp = 2;
 void driveControl(int l_stick, int r_stick) {
-    if (!PTOon()) {
-        left_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        left_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        left_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        right_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        right_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        right_top_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        // Threshold if joysticks don't come back to perfect 0
-        if (abs(l_stick) > 5 || abs(r_stick) > 5) {
-            set_tank(curve(l_stick), curve(r_stick));
-            if (active_brake_kp != 0) reset_drive_sensor();
+        //left side
+        if (abs(l_stick) > 5) { // Threshold if joysticks don't come back to perfect 0
+            left_side_motors = curve(l_stick);
+            if (active_brake_kp != 0) left_front_motor.tare_position();
         }
-        //When joys are released, run active brake (P) on drive
+        //When joys are released, run active brake (P) on drive left
         else {
-            set_tank((0 - left_front_motor.get_position()) * active_brake_kp, (0 - right_front_motor.get_position()) * active_brake_kp);
+            left_side_motors = (0 - left_front_motor.get_position()) * active_brake_kp;
         }
-    }
+        //right side
+        if (abs(r_stick) > 5) { // Threshold if joysticks don't come back to perfect 0
+            right_side_motors = curve(r_stick); 
+            if (active_brake_kp != 0) right_front_motor.tare_position(); 
+        }
+        //When joys are released, run active brake (P) on drive right
+        else {
+            right_side_motors = (0 - right_front_motor.get_position()) * active_brake_kp;
+        }
 }
 
 lemlib::Drivetrain drivetrain {
@@ -59,19 +59,19 @@ lemlib::OdomSensors sensors {
  
 // lateral motion controller
 lemlib::ControllerSettings linearController(
-    10, // proportional gain (kP)
-    30, // derivative gain (kD)
+    50, // proportional gain (kP)
+    37, // derivative gain (kD)
     1, // small error range, in inches
     100, // small error range timeout, in milliseconds
     3, // large error range, in inches
     500, // large error range timeout, in milliseconds
-    20 // maximum acceleration (slew)
+    10 // maximum acceleration (slew)
 );
 
 // angular motion controller
 lemlib::ControllerSettings angularController(
-    2, // proportional gain (kP)
-    10, // derivative gain (kD)
+    3, // proportional gain (kP)
+    23, // derivative gain (kD)
     1, // small error range, in degrees
     100, // small error range timeout, in milliseconds
     3, // large error range, in degrees

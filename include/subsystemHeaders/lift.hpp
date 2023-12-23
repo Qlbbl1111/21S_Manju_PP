@@ -2,6 +2,6 @@
 
 void setLift();
 
-void setLock();
+void setHang();
 
 void setPTO();

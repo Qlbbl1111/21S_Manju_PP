@@ -14,8 +14,7 @@ pros::MotorGroup right_side_motors({right_front_motor, right_back_motor, right_t
 // MOTORS
 pros::Motor flywheelMotor(5, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
 pros::Motor intakeMotor(4, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor liftMotor_a(6, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor liftMotor_b(7, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor liftMotor(7, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
 // CONTROLLER
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
@@ -24,38 +23,17 @@ pros::Imu inertial(21);
 pros::Rotation liftRot(11);
 
 // PNUEMATICS
+pros::ADIDigitalOut hang('C');
 pros::ADIDigitalOut wings('B');
-pros::ADIDigitalOut liftLock('E');
-pros::ADIDigitalOut PTO('C');
 
 // LIGHTS
-sylib::Addrled leftDriveLights(16,7,43);
-sylib::Addrled rightDriveLights(16,8,43);
-sylib::Addrled leftWingLights(16,1,20);
-sylib::Addrled rightWingLights(16,2,20);
+sylib::Addrled leftDriveLights(6,7,43);
+sylib::Addrled rightDriveLights(6,8,43);
+sylib::Addrled leftWingLights(6,1,20);
+sylib::Addrled rightWingLights(6,2,20);
+sylib::Addrled intakeLights(6,6,32);
 
 //GLOABALS
 bool shift() {
   return controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-}
-
-okapi::ControllerButton PTOButton(okapi::ControllerDigital::down);
-bool latchPTO = false;
-bool togglePTO = false;
-
-bool PTOon() {
-  //FW Toggle (L2 Button)
-  if (PTOButton.isPressed()) {
-    if (!latchPTO) {
-      togglePTO = !togglePTO;
-      latchPTO = true;
-    } else {
-      latchPTO = false;
-    }
-  }
-  if (togglePTO) {
-    return true;
-  } else {
-    return false;
-  }
 }
