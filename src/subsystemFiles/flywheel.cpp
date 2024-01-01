@@ -72,11 +72,14 @@ void setFlywheelMotors(double targetVelocity) {
 void setFlywheel() {
   // flywheel
   if (toggleFW && !toggleFW2) {  // slow
-    setFlywheelMotors(500);
+    flywheelMotor = -127;
+    //setFlywheelMotors(-500);
   } else if (toggleFW2 && !toggleFW) {  // fast
-    setFlywheelMotors(-500);
+  flywheelMotor = 127;
+    //setFlywheelMotors(500);
   } else {
-    setFlywheelMotors(0);
+    flywheelMotor = 0;
+    //setFlywheelMotors(0);
   }
 
   if (flywheelHold.isPressed() && shift()) { 

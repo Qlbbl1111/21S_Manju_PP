@@ -137,7 +137,7 @@ void autonomous() {
   }
 
   if (selector::auton == 0) { //skills
-  nothing();
+  skills();
   }
 }
 

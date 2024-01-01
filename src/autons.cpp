@@ -16,13 +16,56 @@ ASSET(drive_to_middle_txt);
 ASSET(touch_bar_txt);
 void far_2_ball_WP() {
     chassis.setPose(36, -55, 0); //current location
-    chassis.follow(drive_to_middle_txt, 15, 2000, true); //current location 33.526, -14.332, 90
+    chassis.follow(drive_to_middle_txt, 15, 3000, true); //current location 33.526, -14.332, 90
     chassis.waitUntilDone();
     //spit out ball twords goal - WORKS
-    chassis.turnTo(45, -7, 500); 
+    chassis.turnTo(48.4, -12.8, 1000);
     chassis.waitUntilDone();
     intakeMotor = -127;
-    pros::delay(500);
+    chassis.moveToOld(48.425, -12.853, 3000);
+    chassis.waitUntilDone();
+    //get mid
+    chassis.moveToOld(36, -13, 3000, false);
+    chassis.waitUntilDone();
+    intakeMotor = 127;
+    chassis.turnTo(23, 0, 1000);
+    chassis.waitUntilDone();
+    chassis.moveToOld(26, -5, 3000, true);
+    chassis.waitUntilDone();
+    //score in goal
+    chassis.turnTo(1000, 0, 1000);
+    chassis.waitUntilDone();
+    intakeMotor = 0;
+    wings.set_value(true);
+    chassis.moveToOld(48, 0, 3000);
+    chassis.waitUntilDone();
+    chassis.moveToOld(35, 0, 3000, false);
+    chassis.waitUntilDone();
+    wings.set_value(false);
+    pros::delay(250);
+    /*
+    //get bar
+    chassis.turnTo(-1000, 0, 1000);
+    chassis.waitUntilDone();
+    intakeMotor = 127;
+    chassis.moveToOld(11, 0, 3000);
+    chassis.waitUntilDone();
+    chassis.moveToOld(35, 0, 3000, false);
+    chassis.waitUntilDone();
+    intakeMotor = 0;
+    //score
+    chassis.turnTo(1000, 0, 1000);
+    chassis.waitUntilDone();
+    wings.set_value(true);
+    chassis.moveToOld(48, 0, 3000);
+    chassis.waitUntilDone();
+    chassis.moveToOld(35, 0, 3000, false);
+    chassis.waitUntilDone();
+    wings.set_value(false);
+    */
+
+
+    /*
     //get mid ball - WORKS
     chassis.turnTo(23.5, 0, 500);
     chassis.waitUntilDone();
@@ -41,6 +84,7 @@ void far_2_ball_WP() {
     chassis.waitUntilDone();
     chassis.turnTo(-100000,60, 1000);
     chassis.waitUntilDone();
+    */
 }
 
 ASSET(get_bar_ball_txt);
@@ -154,37 +198,34 @@ void far_3_ball() {
     chassis.waitUntilDone();
 }
 
-ASSET(score_pre_wp_txt);
-ASSET(descore_touch_close_txt);
+ASSET(scoreprenew_txt);
+ASSET(touch_bar_comp_txt);
 void close_WP() {
-  chassis.setPose(34, 54, 270); //current location
-  //Score preload in goal
-  chassis.follow(score_pre_wp_txt, 15, 3000, false); //current location = 56.408, 24.223, 0
+  chassis.setPose(44, 55, 315); //current location
+  intakeMotor = 127;
+  chassis.moveToOld(51, 48, 5000, false);
   chassis.waitUntilDone();
-  //try to knock out ball
-  chassis.moveToOld(42.257, 53.346, 5000); //current location
-  chassis.waitUntil(15);
+  intakeMotor = 0;
   wings.set_value(true);
-  chassis.waitUntilDone(); 
-  chassis.moveToOld(34.864, 58.89, 5000, true, false, 85); //current location
+  chassis.moveToOld(44, 55, 5000);
   chassis.waitUntilDone();
+  pros::delay(500);
   wings.set_value(false);
-  //turn to bar and drive to touch
-  chassis.turnTo(-10000, 60, 1000); //current location
-  chassis.waitUntilDone();
+  //chassis.follow(scoreprenew_txt, 15, 5000, false);
+  //chassis.waitUntilDone();
   intakeMotor = -127;
-  chassis.moveToOld(7.477, 58.554, 5000); //current location
+  chassis.follow(touch_bar_comp_txt, 15, 5000, true);
   chassis.waitUntilDone();
-
+  chassis.turnTo(-1000, 59, 1000);
+  chassis.waitUntilDone();
 }
 
 void close_disrupt() {
   chassis.setPose(36, 55, 180); //current location
   //Flick Ball twords goal
   wings.set_value(true);
-  pros::delay(500);
+  pros::delay(250);
   wings.set_value(false);
-  pros::delay(500);
   //Drive halfway to middle ball
   chassis.moveToOld(27, 23, 3000, true); //current location
   chassis.waitUntilDone();
@@ -196,5 +237,13 @@ void close_disrupt() {
 }
 
 void skills() {
-//.......
+  chassis.setPose(-37, -53, 90);
+  chassis.moveToOld(-51.834, -53.514, 5000, false);
+  chassis.waitUntilDone();
+  chassis.turnTo(42.929, 39.232, 1000);
+  chassis.waitUntilDone();
+  chassis.moveToOld(-56.834, -56.514, 5000, false);
+  chassis.waitUntilDone();
+  liftMotor = -127;
+  setFlywheelMotors(500);
 }
